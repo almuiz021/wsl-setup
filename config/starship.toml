@@ -1,0 +1,30 @@
+# ~/.config/starship.toml
+
+# Add a newline before prompt
+add_newline = true
+command_timeout = 2000
+
+# Prompt character
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+# Directory (Hybrid path style)
+[directory]
+truncation_length = 3      # show last 3 folders in the path
+truncate_to_repo = false   # don't cut off at repo root, show folders too
+style = "cyan bold"
+
+# Git branch style
+[git_branch]
+symbol = " "  # nerd font branch icon
+style = "bold purple"
+
+# Git status (dirty / ahead / behind)
+[git_status]
+style = "yellow"
+
+# Golang Symbol
+[golang]
+# symbol = "😸"  
+symbol = "=𝙂𝙊 "

@@ -1,0 +1,16 @@
+# WSL2 global config — written by dotfiles install.sh, auto-tuned to this machine.
+# Apply with:  wsl --shutdown   (from Windows PowerShell/CMD), then reopen the terminal.
+
+[wsl2]
+# RAM ceiling (NOT a reservation — autoMemoryReclaim returns idle RAM to Windows).
+memory=__WSL_MEMORY__GB
+# Logical processors WSL may use (time-shared with Windows, not exclusive).
+processors=__WSL_PROCESSORS__
+# On-disk swap on the SSD absorbs build spikes so they don't OOM-kill the VM.
+swap=__WSL_SWAP__GB
+swapFile=C:\\wsl\\swap.vhdx
+localhostForwarding=true
+
+[experimental]
+autoMemoryReclaim=gradual
+sparseVhd=true

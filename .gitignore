@@ -1,0 +1,17 @@
+# This repo must NEVER contain secrets or machine-local state.
+*.bak
+*.pre-dotfiles.bak
+*.log
+
+# Claude auth / local-only overrides / caches
+claude/.credentials.json
+claude/settings.local.json
+claude/stats-cache.json
+claude/.last-update-result.json
+
+# atuin sync key/session, ssh keys — belt & suspenders
+**/atuin/key
+**/atuin/session
+**/.ssh/
+**/id_ed25519*
+**/id_rsa*

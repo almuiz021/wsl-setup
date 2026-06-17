@@ -1,0 +1,62 @@
+# Git config — install.sh substitutes __GIT_NAME__ / __GIT_EMAIL__ and copies to ~/.gitconfig
+[user]
+	name = __GIT_NAME__
+	email = __GIT_EMAIL__
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+	autocrlf = input
+	eol = lf
+	pager = delta
+	excludesfile = ~/.config/git/ignore
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+[pull]
+	rebase = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	colorMoved = default
+	algorithm = histogram
+[push]
+	autoSetupRemote = true
+	default = simple
+[fetch]
+	prune = true
+[rebase]
+	autosquash = true
+	autostash = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[help]
+	autocorrect = prompt
+[alias]
+	st = status -sb
+	co = checkout
+	sw = switch
+	br = branch
+	ci = commit
+	last = log -1 HEAD --stat
+	unstage = reset HEAD --
+	lg = log --oneline --graph --decorate --all -30
+[rerere]
+	enabled = true
+[commit]
+	verbose = true
+[tag]
+	sort = -version:refname
+[log]
+	date = iso
