@@ -7,6 +7,10 @@ Ubuntu/Debian**.
 
 ## Install
 
+**Starting from bare Windows (no WSL yet)?** Do [`WINDOWS-SETUP.md`](WINDOWS-SETUP.md)
+first — it installs WSL + Ubuntu 24.04, then sends you here. **Already on WSL2 Ubuntu?**
+Just:
+
 ```bash
 git clone https://github.com/<you>/dotfiles ~/dotfiles
 cd ~/dotfiles
