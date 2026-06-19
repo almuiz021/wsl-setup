@@ -54,7 +54,7 @@ sudo apt install -y git
 ## 4. Clone the dotfiles and run the installer
 
 ```bash
-git clone https://github.com/<you>/dotfiles ~/dotfiles
+git clone https://github.com/almuiz021/wsl-setup ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```

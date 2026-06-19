@@ -12,7 +12,7 @@ first — it installs WSL + Ubuntu 24.04, then sends you here. **Already on WSL2
 Just:
 
 ```bash
-git clone https://github.com/<you>/dotfiles ~/dotfiles
+git clone https://github.com/almuiz021/wsl-setup ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
