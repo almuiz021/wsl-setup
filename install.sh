@@ -171,7 +171,8 @@ place "$DOTFILES/config/shell/ssh-agent.sh"       "$HOME/.config/shell/ssh-agent
 place "$DOTFILES/claude/settings.json"            "$HOME/.claude/settings.json"
 place "$DOTFILES/claude/statusline.sh"            "$HOME/.claude/statusline.sh"
 place "$DOTFILES/claude/notify.sh"                "$HOME/.claude/notify.sh"
-chmod +x "$HOME/.claude/statusline.sh" "$HOME/.claude/notify.sh" "$HOME/.config/shell/"*.sh 2>/dev/null
+place "$DOTFILES/claude/usage-refresh.sh"         "$HOME/.claude/usage-refresh.sh"
+chmod +x "$HOME/.claude/statusline.sh" "$HOME/.claude/notify.sh" "$HOME/.claude/usage-refresh.sh" "$HOME/.config/shell/"*.sh 2>/dev/null
 ok "shell / tmux / claude configs"
 
 # global gitignore + gitconfig from template

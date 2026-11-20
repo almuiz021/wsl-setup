@@ -123,6 +123,33 @@ if [ "${ladd:-0}" -gt 0 ] 2>/dev/null || [ "${ldel:-0}" -gt 0 ] 2>/dev/null; the
   linestr=$(printf ' \033[32m+%s\033[0m\033[31m-%s\033[0m' "$ladd" "$ldel")
 fi
 
-# --- compose: model · dir · branch · context · window · cost · lines ---------
-printf "\033[36m%s\033[0m \033[90m·\033[0m \033[34m%s\033[0m%b%b%b%b%b" \
-  "$model" "$disp" "$branch" "$ctx" "$winstr" "$coststr" "$linestr"
+# --- weekly + fable usage % (extreme right) ----------------------------------
+# Same numbers as /usage, from GET /api/oauth/usage via a background-refreshed
+# cache so the statusline never blocks on the network. If the cache is missing
+# or older than 3 min, spawn a detached refresh for the *next* render and use
+# whatever's currently cached (nothing on the very first run). Colour by level:
+# green <50, yellow <80, red >=80 — a warning as you approach a weekly limit.
+wkstr=""; fabstr=""
+CACHE="$HOME/.claude/.usage-cache"
+REFRESH="$HOME/.claude/usage-refresh.sh"
+now="${now:-$(date +%s 2>/dev/null)}"
+cage=99999
+[ -f "$CACHE" ] && cage=$(( now - $(stat -c %Y "$CACHE" 2>/dev/null || echo 0) ))
+if [ "$cage" -ge 180 ] && [ -f "$REFRESH" ]; then
+  ( nohup bash "$REFRESH" >/dev/null 2>&1 </dev/null & ) 2>/dev/null
+fi
+if [ -f "$CACHE" ]; then
+  WK_PCT=""; FAB_PCT=""; SESS_PCT=""
+  . "$CACHE" 2>/dev/null
+  levelcol() { c=32; [ "$1" -ge 50 ] 2>/dev/null && c=33; [ "$1" -ge 80 ] 2>/dev/null && c=31; printf '%s' "$c"; }
+  case "$WK_PCT" in ''|*[!0-9]*) ;; *)
+    wkstr=$(printf ' \033[90m·\033[0m \033[2mwk\033[0m \033[%sm%d%%\033[0m' "$(levelcol "$WK_PCT")" "$WK_PCT") ;;
+  esac
+  case "$FAB_PCT" in ''|*[!0-9]*) ;; *)
+    fabstr=$(printf ' \033[90m·\033[0m \033[35mfab\033[0m \033[%sm%d%%\033[0m' "$(levelcol "$FAB_PCT")" "$FAB_PCT") ;;
+  esac
+fi
+
+# --- compose: model · dir · branch · context · window · cost · lines · wk · fab
+printf "\033[36m%s\033[0m \033[90m·\033[0m \033[34m%s\033[0m%b%b%b%b%b%b%b" \
+  "$model" "$disp" "$branch" "$ctx" "$winstr" "$coststr" "$linestr" "$wkstr" "$fabstr"

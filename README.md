@@ -38,7 +38,7 @@ to `*.pre-dotfiles.bak`. Tools install at their **latest** versions.
   `tka`, `cheat`, `claude-clean`. Alt+q/w/e… switch windows, Alt+s switch projects.
   Run `cheat` after install for the full reference.
 - **Claude Code** — statusline (model · dir · git · **context %** · **5h-window
-  timer** · cost · ±lines) and **Windows toast notifications** when Claude needs you
+  timer** · cost · ±lines · **weekly usage %**) and **Windows toast notifications** when Claude needs you
   or finishes.
 - **Toolchain** — Go + gopls/air/dlv/gofumpt/golangci-lint · Node (nvm LTS) +
   pnpm/yarn (corepack) + bun · Python (uv + ruff) · Neovim · lazygit/lazydocker ·
@@ -64,7 +64,7 @@ those yourself after install.
 |------|-------------|
 | `home/` | `~/` — `.zshrc`, `.zshenv`, `.tmux.conf`, cheatsheet |
 | `config/` | `~/.config/` — starship, atuin, `shell/{claude-workflow,ssh-agent}.sh` |
-| `claude/` | `~/.claude/` — `settings.json`, `statusline.sh`, `notify.sh` |
+| `claude/` | `~/.claude/` — `settings.json`, `statusline.sh`, `usage-refresh.sh`, `notify.sh` |
 | `windows/` | `C:\wsl\claude-notify.ps1` (toast bridge) |
 | `wsl/` | `.wslconfig` template (auto-tuned at install) |
 | `git/` | `.gitconfig` template (name/email filled at install) |
